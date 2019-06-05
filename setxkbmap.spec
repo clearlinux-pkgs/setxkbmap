@@ -4,7 +4,7 @@
 #
 Name     : setxkbmap
 Version  : 1.3.1
-Release  : 1
+Release  : 2
 URL      : https://www.x.org/releases/individual/app/setxkbmap-1.3.1.tar.bz2
 Source0  : https://www.x.org/releases/individual/app/setxkbmap-1.3.1.tar.bz2
 Summary  : No detailed summary available
