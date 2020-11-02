@@ -6,10 +6,10 @@
 #
 Name     : setxkbmap
 Version  : 1.3.2
-Release  : 3
+Release  : 4
 URL      : https://www.x.org/releases/individual/app/setxkbmap-1.3.2.tar.bz2
 Source0  : https://www.x.org/releases/individual/app/setxkbmap-1.3.2.tar.bz2
-Source99 : https://www.x.org/releases/individual/app/setxkbmap-1.3.2.tar.bz2.sig
+Source1  : https://www.x.org/releases/individual/app/setxkbmap-1.3.2.tar.bz2.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : HPND
@@ -52,20 +52,21 @@ man components for the setxkbmap package.
 
 %prep
 %setup -q -n setxkbmap-1.3.2
+cd %{_builddir}/setxkbmap-1.3.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1563250118
+export SOURCE_DATE_EPOCH=1604360689
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
@@ -75,13 +76,13 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1563250118
+export SOURCE_DATE_EPOCH=1604360689
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/setxkbmap
-cp COPYING %{buildroot}/usr/share/package-licenses/setxkbmap/COPYING
+cp %{_builddir}/setxkbmap-1.3.2/COPYING %{buildroot}/usr/share/package-licenses/setxkbmap/9c19301d4230a125288f4b870dd634e3fe984110
 %make_install
 
 %files
@@ -93,7 +94,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/setxkbmap/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/setxkbmap/COPYING
+/usr/share/package-licenses/setxkbmap/9c19301d4230a125288f4b870dd634e3fe984110
 
 %files man
 %defattr(0644,root,root,0755)
