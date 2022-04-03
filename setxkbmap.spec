@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xCFDF148828C642A7 (alanc@freedesktop.org)
 #
 Name     : setxkbmap
-Version  : 1.3.2
-Release  : 4
-URL      : https://www.x.org/releases/individual/app/setxkbmap-1.3.2.tar.bz2
-Source0  : https://www.x.org/releases/individual/app/setxkbmap-1.3.2.tar.bz2
-Source1  : https://www.x.org/releases/individual/app/setxkbmap-1.3.2.tar.bz2.sig
+Version  : 1.3.3
+Release  : 5
+URL      : https://www.x.org/releases/individual/app/setxkbmap-1.3.3.tar.xz
+Source0  : https://www.x.org/releases/individual/app/setxkbmap-1.3.3.tar.xz
+Source1  : https://www.x.org/releases/individual/app/setxkbmap-1.3.3.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : HPND
@@ -19,6 +19,7 @@ Requires: setxkbmap-man = %{version}-%{release}
 BuildRequires : pkgconfig(x11)
 BuildRequires : pkgconfig(xkbfile)
 BuildRequires : pkgconfig(xorg-macros)
+BuildRequires : pkgconfig(xrandr)
 
 %description
 setxkbmap is an X11 client to change the keymaps in the X server for a
@@ -51,23 +52,23 @@ man components for the setxkbmap package.
 
 
 %prep
-%setup -q -n setxkbmap-1.3.2
-cd %{_builddir}/setxkbmap-1.3.2
+%setup -q -n setxkbmap-1.3.3
+cd %{_builddir}/setxkbmap-1.3.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604360689
+export SOURCE_DATE_EPOCH=1649020588
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -79,10 +80,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1604360689
+export SOURCE_DATE_EPOCH=1649020588
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/setxkbmap
-cp %{_builddir}/setxkbmap-1.3.2/COPYING %{buildroot}/usr/share/package-licenses/setxkbmap/9c19301d4230a125288f4b870dd634e3fe984110
+cp %{_builddir}/setxkbmap-1.3.3/COPYING %{buildroot}/usr/share/package-licenses/setxkbmap/9c19301d4230a125288f4b870dd634e3fe984110
 %make_install
 
 %files
